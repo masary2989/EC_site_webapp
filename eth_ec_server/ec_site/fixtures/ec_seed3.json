@@ -1,0 +1,36 @@
+
+[
+  {
+    "model": "ec_site.product",
+    "pk": 0,
+    "fields": {
+      "name": "miso",
+      "message": "I ate misosoup",
+      "price": 10,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
+    }
+  },
+  {
+    "model": "ec_site.product",
+    "pk": 1,
+    "fields": {
+      "name": "soysource",
+      "message": "I ate pasta",
+      "price": 10,
+      "created_at": "2018-11-19T13:20:30+03:00",
+      "updated_at": "2018-11-19T13:20:30+03:00"
+    }
+  },
+  {
+    "model": "ec_site.product",
+    "pk": 2,
+    "fields": {
+      "name": "cheeze",
+      "message": "I ate pizza",
+      "price": 10,
+      "created_at": "2018-11-19T19:20:30+03:00",
+      "updated_at": "2018-11-19T19:20:30+03:00"
+    }
+  }
+]

@@ -1,0 +1,16 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+coverage = "*"
+
+[packages]
+django = "*"
+djangorestframework = "*"
+pillow = "*"
+mysqlclient = "*"
+
+[requires]
+python_version = "3.6"
