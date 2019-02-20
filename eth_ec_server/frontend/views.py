@@ -3,5 +3,5 @@ from django.shortcuts import render
 # Create your views here.
 
 
-def index(request):
+def index(request, id=None, gid=None):
     return render(request, 'frontend/index.html')

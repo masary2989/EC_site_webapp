@@ -1,35 +1,12 @@
 [
   {
     "model": "ec_site.address",
-    "pk": 0,
     "fields": {
-      "uid": 0,
+      "uid": 1,
       "address": "morning",
       "message": "I ate misosoup",
       "created_at": "2018-11-19T10:20:30+03:00",
       "updated_at": "2018-11-19T10:20:30+03:00"
-    }
-  },
-  {
-    "model": "ec_site.address",
-    "pk": 1,
-    "fields": {
-      "uid": 1,
-      "address": "afternoon",
-      "message": "I ate pasta",
-      "created_at": "2018-11-19T13:20:30+03:00",
-      "updated_at": "2018-11-19T13:20:30+03:00"
-    }
-  },
-  {
-    "model": "ec_site.address",
-    "pk": 2,
-    "fields": {
-      "uid": 2,
-      "address": "evening",
-      "message": "I ate pizza",
-      "created_at": "2018-11-19T19:20:30+03:00",
-      "updated_at": "2018-11-19T19:20:30+03:00"
     }
   }
 ]

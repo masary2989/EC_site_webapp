@@ -2,35 +2,68 @@
 [
   {
     "model": "ec_site.product",
-    "pk": 0,
+    "pk": 1,
     "fields": {
-      "name": "miso",
-      "message": "I ate misosoup",
-      "price": 10,
+      "name": "Amazon.co.jp eGift Card",
+      "message": "It is an amazon gift card of Japan. After purchase, you will receive an e-mail with code written for your e-mail address. Cancellation after purchase can not be done.",
+      "price": 500,
       "created_at": "2018-11-19T10:20:30+03:00",
       "updated_at": "2018-11-19T10:20:30+03:00"
     }
   },
   {
     "model": "ec_site.product",
-    "pk": 1,
+    "pk": 2,
     "fields": {
-      "name": "soysource",
-      "message": "I ate pasta",
-      "price": 10,
-      "created_at": "2018-11-19T13:20:30+03:00",
-      "updated_at": "2018-11-19T13:20:30+03:00"
+      "name": "Amazon.co.jp eGift Card",
+      "message": "It is an amazon gift card of Japan. After purchase, you will receive an e-mail with code written for your e-mail address. Cancellation after purchase can not be done.",
+      "price": 1000,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
     }
   },
   {
     "model": "ec_site.product",
-    "pk": 2,
+    "pk": 3,
     "fields": {
-      "name": "cheeze",
-      "message": "I ate pizza",
-      "price": 10,
-      "created_at": "2018-11-19T19:20:30+03:00",
-      "updated_at": "2018-11-19T19:20:30+03:00"
+      "name": "Amazon.co.jp eGift Card",
+      "message": "It is an amazon gift card of Japan. After purchase, you will receive an e-mail with code written for your e-mail address. Cancellation after purchase can not be done.",
+      "price": 2000,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
+    }
+  },
+  {
+    "model": "ec_site.product",
+    "pk": 4,
+    "fields": {
+      "name": "Amazon.co.jp eGift Card",
+      "message": "It is an amazon gift card of Japan. After purchase, you will receive an e-mail with code written for your e-mail address. Cancellation after purchase can not be done.",
+      "price": 3000,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
+    }
+  },
+  {
+    "model": "ec_site.product",
+    "pk": 5,
+    "fields": {
+      "name": "Amazon.co.jp eGift Card",
+      "message": "It is an amazon gift card of Japan. After purchase, you will receive an e-mail with code written for your e-mail address. Cancellation after purchase can not be done.",
+      "price": 5000,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
+    }
+  },
+  {
+    "model": "ec_site.product",
+    "pk": 6,
+    "fields": {
+      "name": "Amazon.co.jp eGift Card",
+      "message": "It is an amazon gift card of Japan. After purchase, you will receive an e-mail with code written for your e-mail address. Cancellation after purchase can not be done.",
+      "price": 10000,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
     }
   }
 ]

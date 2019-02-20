@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+# this 2 line is mysql setting
+import pymysql
+pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -24,8 +27,11 @@ SECRET_KEY = '4f^wuc4h3g_+ors#0&rzq+ktrlx8z0vb(4fu*dv*9zqod!@nob'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+# DEBUG = False
 
-ALLOWED_HOSTS = []
+if not DEBUG:
+    # ALLOWED_HOSTS=['*']
+    ALLOWED_HOSTS=['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -76,13 +82,33 @@ WSGI_APPLICATION = 'eth_ec_server.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        # 'ENGINE': 'django.db.backends.mysql',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if DEBUG == True:
+    DATABASES = {
+        'default': {
+            # 'ENGINE': 'django.db.backends.sqlite3',
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'ec_site',
+            'USER': 'ec_site_user',
+            'PASSWORD': 'debug_ec_site_user',
+            'HOST': 'localhost',
+            # 'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'eth_ec_server',
+            'USER': 'eth_ec_serveruser',
+            'PASSWORD': 'eth_ec_serverpass',
+            'HOST': 'db',
+            'PORT': '3306',
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+            },
+        }
+    }
+
 
 
 # Password validation

@@ -1,67 +1,15 @@
 [
   {
     "model": "ec_site.order",
-    "pk": 0,
-    "fields": {
-      "uid": 0,
-      "contract_tx": 0,
-      "pid": 0,
-      "message": "I ate misosoup",
-      "payment": 10,
-      "created_at": "2018-11-19T10:20:30+03:00",
-      "updated_at": "2018-11-19T10:20:30+03:00"
-    }
-  },
-  {
-    "model": "ec_site.order",
     "pk": 1,
     "fields": {
-      "uid": 0,
-      "contract_tx": 0,
-      "pid": 1,
-      "message": "I ate misosoup",
-      "payment": 10,
-      "created_at": "2018-11-19T13:20:30+03:00",
-      "updated_at": "2018-11-19T13:20:30+03:00"
-    }
-  },
-  {
-    "model": "ec_site.order",
-    "pk": 2,
-    "fields": {
-      "uid": 0,
-      "contract_tx": 0,
-      "pid": 2,
-      "message": "I ate misosoup",
-      "payment": 10,
-      "created_at": "2018-11-19T19:20:30+03:00",
-      "updated_at": "2018-11-19T19:20:30+03:00"
-    }
-  },
-  {
-    "model": "ec_site.order",
-    "pk": 3,
-    "fields": {
       "uid": 1,
-      "contract_tx": 1,
-      "pid": 2,
+      "contract_tx": 0,
+      "pid": [1],
       "message": "I ate misosoup",
-      "payment": 10,
-      "created_at": "2018-11-19T19:20:30+03:00",
-      "updated_at": "2018-11-19T19:20:30+03:00"
-    }
-  },
-  {
-    "model": "ec_site.order",
-    "pk": 4,
-    "fields": {
-      "uid": 2,
-      "contract_tx": 2,
-      "pid": 2,
-      "message": "I ate misosoup",
-      "payment": 10,
-      "created_at": "2018-11-19T19:20:30+03:00",
-      "updated_at": "2018-11-19T19:20:30+03:00"
+      "payment": 1000,
+      "created_at": "2018-11-19T10:20:30+03:00",
+      "updated_at": "2018-11-19T10:20:30+03:00"
     }
   }
 ]

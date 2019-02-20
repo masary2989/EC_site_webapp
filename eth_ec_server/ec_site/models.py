@@ -6,6 +6,7 @@ from django.db import models
 class User(models.Model):
     name = models.CharField(max_length=100)
     email = models.EmailField()
+    walletAddress = models.CharField(max_length=42, default='')
     message = models.CharField(max_length=300)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)
@@ -30,7 +31,7 @@ class Product(models.Model):
 
 class Order(models.Model):
     uid = models.ForeignKey(User, on_delete=models.CASCADE)
-    contract_tx = models.BigIntegerField()
+    contract_tx = models.BigIntegerField()  # contract nai no id
     pid = models.ManyToManyField(Product)
     message = models.CharField(max_length=300)
     payment = models.PositiveSmallIntegerField()
