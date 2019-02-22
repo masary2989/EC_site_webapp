@@ -5,7 +5,7 @@ from ec_site.models import User, Address, Product, Order
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('name', 'walletAddress','email', 'message')
+        fields = ('id', 'name', 'walletAddress','email', 'message')
 
 
 class AddressSerializer(serializers.ModelSerializer):

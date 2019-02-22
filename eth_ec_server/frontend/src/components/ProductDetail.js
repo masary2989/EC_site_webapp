@@ -130,7 +130,6 @@ class ProductDetail extends Component {
   }
 
   render() {
-    console.log('in ProductDetail', this.state);
     const { classes } = this.props;
     const { id } = this.props.match.params;
     const gas = {
@@ -260,8 +259,11 @@ class ProductDetail extends Component {
                       'Content-Type': 'application/json',
                     }),
                   };
-                  fetch(this.props.apiUrl + 'api/users/', userPost)
-                    .then((userResponse) => pay(
+                  const payPromise = () => {
+                    // Promiseクラスのインスタンスを関数の戻り値にする
+                    // Promiseクラスのコンストラクタの引数には関数を渡す
+                    // その関数は、resolve関数とreject関数を引数に取り、戻り値は無し
+                    return new Promise ((resolve, reject) => pay(
                       this.setedWeb3,
                       this.state.owneraddress,
                       this.state.useraddress,
@@ -269,17 +271,29 @@ class ProductDetail extends Component {
                       gas[this.state.choosedGas],
                       this.props.history.push,
                       this.props.apiUrl,
+                      resolve,
+                      reject,
                       id,
-                    )
-                      .then((userResponse) => {
-                        console.log('in p d reach order');
-                        const data = userResponse.json();
+                    ));
+                  };
+                  fetch(this.props.apiUrl + 'api/users/', userPost)
+                    .then((userResponse) => {
+                      this.user = userResponse;
+                      return payPromise();
+                    })
+                    .then(() => {
+                      console.log('in p d reach order');
+
+                      this.user.json().then(response => {
+                        const data = response;
+                        console.log('in p d response user', data);
+
                         const orderPost = {
                           method: 'POST',
                           body: JSON.stringify({
-                            uid: data.uid,
+                            uid: data.id,
                             contract_tx: 1, // naosu
-                            pid: [id],
+                            pid: [Number(id)+1], // 0 ha nai
                             message: 'Anonymous order',
                             payment: this.state.price,
                           }),
@@ -288,12 +302,15 @@ class ProductDetail extends Component {
                             'Content-Type': 'application/json',
                           }),
                         };
-                        fetch(this.props.apiUrl + 'api/orders/', orderPost)
-                      }))
-                    .then(() => {
-                      console.log('in p deta when after pay');
-                      this.props.history
-                        .push(`/purchaseconfirmation/${id}/${ this.state.choosedGas }`);
+                        console.log('in p d response user', orderPost);
+
+                        return fetch(this.props.apiUrl + 'api/orders/', orderPost)
+                      })
+                      .then(() => {
+                        console.log('in p deta when after pay');
+                        this.props.history
+                          .push(`/purchaseconfirmation/${id}/${ this.state.choosedGas }`);
+                      });
                     });
                 }}
               >

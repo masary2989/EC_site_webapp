@@ -780,18 +780,22 @@ export const pay = (
   choosedGas,
   navigateProp,
   apiUrl,
+  resolve,
+  reject,
   pid) => {
   if (price) {
     const tokenAddress = KOVAN_DAI_ADDRESS;
     const multisigPaymentAddress = KOVAN_MULTISIGPAYMENT_ADDRESS;
     const toAddress = to;
     const fromAddress = from;
+    /*
     console.log('tokenAddress', tokenAddress);
     console.log('paymentAddress', multisigPaymentAddress);
     console.log('toAddress', toAddress);
     console.log('fromAddress', fromAddress);
     console.log('price', price);
     console.log('gasPrice', choosedGas);
+    */
     const { web3 } = window;
 
     // Get ERC20 Token contract instance
@@ -811,19 +815,19 @@ export const pay = (
       }),
       headers: new Headers({ "Content-Type": "application/json" })
     };
-    console.log('value', value);
+    // console.log('value', value);
     // call transfer function
     // get gas price
     setedWeb3.eth.getGasPrice()
       .then((gasPrice) => {
-        console.log('gasPrice', gasPrice);
+        // console.log('gasPrice', gasPrice);
         // approve token
         tokenContract.methods.approve(multisigPaymentAddress, value).send({
           from: fromAddress,
           gasPrice: gasPrice * choosedGas,
         })
           .then((tokenhash) => {
-            console.log('tokenhash', tokenhash);
+            // console.log('tokenhash', tokenhash);
             // deposit token
             return multisigPaymentContract.methods.depositDai(value).send({
               from: fromAddress,
@@ -837,16 +841,19 @@ export const pay = (
               .then((response) => {
                 console.log('end logics');
                 if (response.status !== 200) {
-                  return this.setState({ placeholder: 'Something went wrong' });
+                  console.log('responce status bad', response.status);
+                  return Promise.reject(false);
                 }
                 // navigateProp(`/purchaseconfirmation/${pid}/${choosedGas}`);
-                return response.json();
+                // return Promise.resolve(response.json());
+                console.log('responce status ok');
+                return resolve();
               });
           });
       });
   } else {
     console.log('please input price');
-    return false;
+    return reject(false);
   }
 };
 
