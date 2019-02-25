@@ -9,6 +9,7 @@ import Web3 from 'web3';
 import './App.css';
 import NavBar from './NavBar'; import {
   pay,
+  confirmPay,
   KOVAN_OWNER_WALLET_ADDRESS,
 } from './web3_logics';
 import AmagifImage from './images/amagif.png';
@@ -274,6 +275,8 @@ class ProductDetail extends Component {
                       resolve,
                       reject,
                       id,
+                      this.state.email,
+                      this.state.data[id].price,
                     ));
                   };
                   fetch(this.props.apiUrl + 'api/users/', userPost)
@@ -281,18 +284,19 @@ class ProductDetail extends Component {
                       this.user = userResponse;
                       return payPromise();
                     })
-                    .then(() => {
+                    .then((transactionCounts) => {
                       console.log('in p d reach order');
 
                       this.user.json().then(response => {
                         const data = response;
-                        console.log('in p d response user', data);
-
+                        console.log('in pd transactionCounts', transactionCounts);
+                        this.transactionCount = Number(transactionCounts[transactionCounts.length-1]);
+                        console.log('in pd transactionCount', this.transactionCount);
                         const orderPost = {
                           method: 'POST',
                           body: JSON.stringify({
                             uid: data.id,
-                            contract_tx: 1, // naosu
+                            contract_tx: this.transactionCount, // 0no toki kanngaeru
                             pid: [Number(id)+1], // 0 ha nai
                             message: 'Anonymous order',
                             payment: this.state.price,
@@ -306,11 +310,17 @@ class ProductDetail extends Component {
 
                         return fetch(this.props.apiUrl + 'api/orders/', orderPost)
                       })
-                      .then(() => {
-                        console.log('in p deta when after pay');
-                        this.props.history
-                          .push(`/purchaseconfirmation/${id}/${ this.state.choosedGas }`);
-                      });
+                        .then(() => {
+                          console.log('in p detail when after pay');
+                          confirmPay(
+                            this.setedWeb3,
+                            this.state.useraddress,
+                            gas[this.state.choosedGas],
+                            this.transactionCount,
+                          );
+                          this.props.history
+                            .push(`/purchaseconfirmation/${id}/${ this.state.choosedGas }`);
+                        });
                     });
                 }}
               >

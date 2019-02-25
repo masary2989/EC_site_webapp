@@ -15,20 +15,21 @@ ITEM_URL = 'https://www.amazon.co.jp/Amazonギフト券-1_JP_Email-Amazonギフ�
 ACCEPT_SHOP = 'Amazon'
 LIMIT_VALUE = 33500
 
+
 def l(str):
     print("%s : %s"%(datetime.now().strftime("%Y/%m/%d %H:%M:%S"),str))
 
 def pay_amazon_gift(wish, send_to_address):
     # ブラウザの起動
-    cookie_f_r = open("amazon_cookies.json", 'r')
-    cookies_r = json.load(cookie_f_r)
+    with open("amazon_cookies.json", 'r') as cookie_f_r:
+        cookies_r = json.load(cookie_f_r)
     print(cookies_r[0])
     try:
         options = webdriver.ChromeOptions()
         # ヘッドレスモードを有効にする（次の行をコメントアウトすると画面が表示される）。
         options.add_argument('--headless')
         # ユーザーデータを有効にする
-        userdata_dir = 'seleniumChromeUserData'  # カレントディレクトリの直下に作る場合
+        # userdata_dir = 'seleniumChromeUserData'  # カレントディレクトリの直下に作る場合
         # os.makedirs(userdata_dir, exist_ok=True)
         # options.add_argument('--user-data-dir=' + userdata_dir)
         b = webdriver.Chrome(os.path.join(os.path.dirname(__file__), 'chromedriver'), options=options)
@@ -67,7 +68,7 @@ def pay_amazon_gift(wish, send_to_address):
             except:
                 l('Failed to find button')
                 b.quit()
-                return
+                return False
         # 送り先を入れる
         b.find_element_by_id('gc-order-form-recipients').send_keys(send_to_address)
         # b.find_element_by_id('gc-order-form-senderName').send_keys(SENDER_NAME)
@@ -78,7 +79,7 @@ def pay_amazon_gift(wish, send_to_address):
         # b.refresh()
         l('Failed to find button')
         b.quit()
-        return
+        return False
 
     # 購入手続き
     # b.get('https://www.amazon.co.jp/gp/cart/view.html/ref=nav_cart')
@@ -95,7 +96,7 @@ def pay_amazon_gift(wish, send_to_address):
         except:
             l('LOGIN FAILED.')
             b.quit()
-            return
+            return False
 
         # 値段の確認
         try:
@@ -107,14 +108,14 @@ def pay_amazon_gift(wish, send_to_address):
         except:
             l('Error in CC-card')
             b.quit()
-            return
+            return False
     elif '支払い' in b.title:
         try:
             b.find_element_by_id('continue-top').click()
         except:
             l('Error in CC-card')
             b.quit()
-            return
+            return False
 
 
 
@@ -124,11 +125,12 @@ def pay_amazon_gift(wish, send_to_address):
     print(b.find_element_by_name('placeYourOrder1').text)
     l('ALL DONE.')
     cookies = b.get_cookies()
-    cookie_f = open("amazon_cookies.json", 'w')
-    json.dump(cookies, cookie_f)
+    with open("amazon_cookies.json", 'w') as cookie_f:
+        json.dump(cookies, cookie_f)
     b.quit()
     # for c in cookies:
     #     print(c)
+    return True
 
 if __name__ == '__main__':
     pay_amazon_gift(wish=2000, send_to_address="fxxkinspam@gmail.com")

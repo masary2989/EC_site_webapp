@@ -13,6 +13,7 @@ import NavBar from './NavBar';
 import {
   pay,
   viewBalance,
+  confirmPay,
   KOVAN_OWNER_WALLET_ADDRESS,
 } from './web3_logics';
 import AmagifImage from './images/amagif.png';
@@ -108,7 +109,7 @@ class PurchaseConfirmation extends Component {
   }
 
   render() {
-    console.log(this.state);
+    console.log('in p c ', this.state);
     const { classes } = this.props;
     const { id } = this.props.match.params;
     const values = {
@@ -119,7 +120,7 @@ class PurchaseConfirmation extends Component {
       1: 50,
       2: 10,
     };
-    console.log(id);
+    console.log('in pc', id);
     return (
       <div>
         <NavBar />

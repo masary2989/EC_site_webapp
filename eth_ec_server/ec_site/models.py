@@ -34,6 +34,6 @@ class Order(models.Model):
     contract_tx = models.BigIntegerField()  # contract nai no id
     pid = models.ManyToManyField(Product)
     message = models.CharField(max_length=300)
-    payment = models.PositiveSmallIntegerField()
+    payment = models.FloatField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now_add=True)

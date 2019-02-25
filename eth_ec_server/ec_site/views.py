@@ -6,6 +6,7 @@ from ec_site.models import User, Address, Product, Order
 from ec_site.serializers import UserSerializer, AddressSerializer, ProductSerializer, OrderSerializer
 
 from .ConfirmSelling import confirmSelling
+from .pay_in_amazon import pay_amazon_gift as payInAmazon
 
 
 # Create your views here.
@@ -25,6 +26,8 @@ class UserListCreate(generics.ListCreateAPIView):
 
 class ConfirmSelling(APIView):
     def post(self, request, format=None):
+        print('---------------', request.data)
         if confirmSelling(request.data['amount'], request.data['u_address']):
-            return Response(status=status.HTTP_200_OK)
+            if payInAmazon(request.data['pValue'], request.data['email']):
+                return Response(status=status.HTTP_200_OK)
         return Response(status=status.HTTP_500_INTERNAL_SERVER_ERROR)

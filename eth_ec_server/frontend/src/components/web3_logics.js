@@ -782,7 +782,9 @@ export const pay = (
   apiUrl,
   resolve,
   reject,
-  pid) => {
+  pid,
+  email,
+  pValue) => {
   if (price) {
     const tokenAddress = KOVAN_DAI_ADDRESS;
     const multisigPaymentAddress = KOVAN_MULTISIGPAYMENT_ADDRESS;
@@ -812,9 +814,12 @@ export const pay = (
       body: JSON.stringify({
         amount: price,
         u_address: from,
+        pValue,
+        email,
       }),
       headers: new Headers({ "Content-Type": "application/json" })
     };
+    console.log('--------- conf', conf);
     // console.log('value', value);
     // call transfer function
     // get gas price
@@ -846,8 +851,14 @@ export const pay = (
                 }
                 // navigateProp(`/purchaseconfirmation/${pid}/${choosedGas}`);
                 // return Promise.resolve(response.json());
-                console.log('responce status ok');
-                return resolve();
+                multisigPaymentContract.methods.userTransactions().call({
+                  from: fromAddress,
+                  gasPrice: gasPrice * choosedGas,
+                })
+                  .then((transactionCount) => {
+                    console.log('responce status ok', transactionCount);
+                    return resolve(transactionCount);
+                  });
               });
           });
       });
@@ -856,6 +867,39 @@ export const pay = (
     return reject(false);
   }
 };
+
+export const confirmPay = (
+  setedWeb3,
+  from,
+  choosedGas,
+  transactionCount,
+) => {
+  const multisigPaymentAddress = KOVAN_MULTISIGPAYMENT_ADDRESS;
+  const fromAddress = from;
+  console.log('start confirmPay',transactionCount);
+  const multisigPaymentContract = new setedWeb3
+    .eth.Contract(multisigPaymentABI, multisigPaymentAddress);
+  setedWeb3.eth.getGasPrice()
+    .then((gasPrice) => {
+      console.log('reach gasP', gasPrice, transactionCount);
+      return multisigPaymentContract
+        .methods.confirmPaying(transactionCount)
+        // .methods.confirmPaying(51)
+        .send({
+          from: fromAddress,
+          gasPrice: gasPrice * choosedGas,
+        });
+    })
+    .then(() => {
+      console.log('in logic resolve confirmPay');
+      return 'success';
+    })
+    .catch((e) => {
+      console.log('in logic reject confirmPay', e);
+      return 'fail';
+    });
+};
+
 
 export const viewBalance = (setedWeb3, to) => {
   const tokenAddress = KOVAN_DAI_ADDRESS;
