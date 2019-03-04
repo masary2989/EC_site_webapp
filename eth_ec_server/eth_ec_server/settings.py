@@ -17,6 +17,7 @@ pymysql.install_as_MySQLdb()
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PROJECT_NAME = os.path.basename(BASE_DIR)
 
 
 # Quick-start development settings - unsuitable for production
@@ -26,8 +27,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '4f^wuc4h3g_+ors#0&rzq+ktrlx8z0vb(4fu*dv*9zqod!@nob'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-# DEBUG = False
+# DEBUG = True
+DEBUG = False
 
 if not DEBUG:
     # ALLOWED_HOSTS=['*']
@@ -148,3 +149,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

@@ -10,7 +10,7 @@ services:
     volumes:
       - ./nginx/conf:/etc/nginx/conf.d
       - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
-      - ./static:/static
+      - ./eth_ec_server/static:/static
     depends_on:
       - web
 
@@ -32,7 +32,7 @@ services:
     command: uwsgi --socket :8001 --module eth_ec_server.wsgi
     volumes:
       - ./eth_ec_server:/code
-      - ./static:/static
+      - ./eth_ec_server/static:/static
     expose:
       - "8001"
     depends_on:
