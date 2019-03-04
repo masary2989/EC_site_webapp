@@ -8,7 +8,7 @@ pipenvの環境をpipfileで作る→pipenv shellで仮想環境立ち上げ
 javascriptはyarnで管理
 yarn installでライブラリインストール
 
-# サーバー起動
+# 開発サーバー起動
 python eth_ec_server/manage.py runserver
 
 # react変更適用
@@ -20,3 +20,9 @@ npm run build
 ・settings.pyのdebugをFalseにする
 ・環境変数をセットする
 ・色々本番用に出てくるバグを治す、、
+・manage.py collectstatic
+
+# デプロイ手順
+１、クローンしてくる
+2、manage.py collectstatic
+3、docker-compose up -d
