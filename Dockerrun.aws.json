@@ -47,9 +47,16 @@
   "containerDefinitions": [
     {
       "name": "nginx",
-      "image": "nginx",
+      "image": "nginx:1.13",
       "essential": true,
       "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 8000,
+          "containerPort": 8000
+        }
+      ],
+      "link": "web",
       "mountPoints": [
         {
           "sourceVolume": "nginx-conf-d",
@@ -73,6 +80,10 @@
       "image": "mysql:5.7",
       "essential": true,
       "memory": 128,
+      "environment" : [
+          { "name" : "MYSQL_ROOT_PASSWORD", "value" : "eth_ec_serverpass" },
+          { "name" : "TZ", "value" : "Asia/Tokyo" }
+      ],
       "mountPoints": [
         {
           "sourceVolume": "db-db",
@@ -91,6 +102,14 @@
       "image": "882339870754.dkr.ecr.ap-northeast-1.amazonaws.com/eth_ec_server/web:latest",
       "essential": true,
       "memory": 128,
+      "portMappings": [
+        {
+          "hostPort": 8001,
+          "containerPort": 8001
+        }
+      ],
+      "command": [ "uwsgi", "--socket", ":8001", "--module", "eth_ec_server.wsgi" ],
+      "link": "db",
       "mountPoints": [
         {
           "sourceVolume": "web-code",
