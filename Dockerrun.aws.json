@@ -46,8 +46,28 @@
   ],
   "containerDefinitions": [
     {
+      "name": "db",
+      "image": "mysql:5.7",
+      "essential": true,
+      "memory": 128,
+      "mountPoints": [
+        {
+          "sourceVolume": "db-db",
+          "containerPath": "/var/lib/mysql",
+          "readOnly": true
+        },
+        {
+          "sourceVolume": "db-sql",
+          "containerPath": "/docker-entrypoint-initdb.d",
+          "readOnly": true
+        }
+      ]
+    },
+    {
       "name": "nginx",
       "image": "nginx:1.13",
+      "essential": true,
+      "memory": 128,
       "mountPoints": [
         {
           "sourceVolume": "nginx-conf-d",
@@ -62,24 +82,6 @@
         {
           "sourceVolume": "nginx-static",
           "containerPath": "/static",
-          "readOnly": true
-        }
-      ]
-    },
-    {
-      "name": "db",
-      "image": "mysql:5.7",
-      "essential": true,
-      "memory": 128,
-      "mountPoints": [
-        {
-          "sourceVolume": "db-db",
-          "containerPath": "/var/lib/mysql",
-          "readOnly": true
-        },
-        {
-          "sourceVolume": "db-sql",
-          "containerPath": "/docker-entrypoint-initdb.d",
           "readOnly": true
         }
       ]
