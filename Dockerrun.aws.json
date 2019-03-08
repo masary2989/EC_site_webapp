@@ -49,6 +49,7 @@
       "name": "nginx",
       "image": "nginx:1.13",
       "essential": true,
+      "memory": 128,
       "mountPoints": [
         {
           "sourceVolume": "nginx-conf-d",
@@ -71,6 +72,7 @@
       "name": "db",
       "image": "mysql:5.7",
       "essential": true,
+      "memory": 128,
       "mountPoints": [
         {
           "sourceVolume": "db-db",
@@ -88,6 +90,7 @@
       "name": "web",
       "image": "882339870754.dkr.ecr.ap-northeast-1.amazonaws.com/eth_ec_server/web:latest",
       "essential": true,
+      "memory": 128,
       "mountPoints": [
         {
           "sourceVolume": "web-code",
