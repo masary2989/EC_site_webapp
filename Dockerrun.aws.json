@@ -48,8 +48,6 @@
     {
       "name": "nginx",
       "image": "nginx:1.13",
-      "essential": true,
-      "memory": 128,
       "mountPoints": [
         {
           "sourceVolume": "nginx-conf-d",
