@@ -10,7 +10,7 @@
     {
       "name": "nginx-uwsgi-params",
       "host": {
-        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/nginx/uwsgi_params:/etc/nginx/uwsgi_params"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/nginx/uwsgi_params"
       }
     },
     {
