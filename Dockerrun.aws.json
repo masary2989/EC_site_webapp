@@ -4,43 +4,43 @@
     {
       "name": "nginx-conf-d",
       "host": {
-        "sourcePath": "./nginx/conf"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/nginx/conf"
       }
     },
     {
       "name": "nginx-uwsgi-params",
       "host": {
-        "sourcePath": "./nginx/uwsgi_params:/etc/nginx/uwsgi_params"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/nginx/uwsgi_params:/etc/nginx/uwsgi_params"
       }
     },
     {
       "name": "nginx-static",
       "host": {
-        "sourcePath": "./eth_ec_server/static"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/eth_ec_server/static"
       }
     },
     {
       "name": "db-db",
       "host": {
-        "sourcePath": "./db"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/db"
       }
     },
     {
       "name": "db-sql",
       "host": {
-        "sourcePath": "./sql"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/sql"
       }
     },
     {
       "name": "web-code",
       "host": {
-        "sourcePath": "./eth_ec_server"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/eth_ec_server"
       }
     },
     {
       "name": "web-static",
       "host": {
-        "sourcePath": "./eth_ec_server/static"
+        "sourcePath": "/Users/ShimamuraMasaru/dev/ecapp/ec_server/eth_ec_server/static"
       }
     }
   ],
