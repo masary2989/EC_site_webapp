@@ -1,0 +1,23 @@
+version: 1
+task_definition:
+  ecs_network_mode: awsvpc
+  task_execution_role: arn:aws:iam::882339870754:role/ecsTaskExecutionRole
+  task_size:
+    cpu_limit: 2048
+    mem_limit: 3072
+  services:
+    nginx:
+      essential: true
+    db:
+      essential: true
+    web:
+      essential: true
+
+run_params:
+  network_configuration:
+    awsvpc_configuration:
+      subnets:
+        - subnet-0f4d3021b93618003
+        - subnet-000ac782e335f2a3f
+      security_groups:
+        - sg-05e5bc7e2952a0740

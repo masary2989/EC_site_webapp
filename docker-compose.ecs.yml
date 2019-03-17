@@ -1,0 +1,39 @@
+version: '3.0'
+
+
+services:
+  nginx:
+    image: nginx:1.13
+    container_name: eth_ec_server.nginx
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./nginx/conf:/etc/nginx/conf.d
+      - ./nginx/uwsgi_params:/etc/nginx/uwsgi_params
+      - ./eth_ec_server/static:/static
+    depends_on:
+      - web
+
+  db:
+    image: mysql:5.7
+    container_name: eth_ec_server.db
+    ports:
+      - 3306:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: eth_ec_serverpass
+      TZ: 'Asia/Tokyo'
+    volumes:
+      - ./db:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+
+  web:
+    image: 882339870754.dkr.ecr.ap-northeast-1.amazonaws.com/eth_ec_server/web:latest
+    container_name: eth_ec_server.web
+    command: uwsgi --socket :8001 --module eth_ec_server.wsgi
+    volumes:
+      - ./eth_ec_server:/var/www/code
+      - ./eth_ec_server/static:/var/www/static
+    expose:
+      - "8001"
+    depends_on:
+      - db
