@@ -44,12 +44,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
     'ec_site',
     'rest_framework',
     'frontend',
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -79,6 +81,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'eth_ec_server.wsgi.application'
 
+CORS_ORIGIN_WHITELIST = (
+    'localhost:8000/',
+    'localhost:8000',
+    '127.0.0.1:8000/',
+    '127.0.0.1:8000',
+    '52.199.226.124:8000/',
+    '52.199.226.124:8000',
+)
+
+# CORS_ORIGIN_ALLOW_ALL = True
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = default_headers + (
+    'dataType',
+)
 
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases

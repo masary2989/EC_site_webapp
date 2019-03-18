@@ -249,6 +249,7 @@ class ProductDetail extends Component {
                   if (this.state.email === '') { return; }
                   const userPost = {
                     method: 'POST',
+                    mode: 'cors',
                     body: JSON.stringify({
                       name: 'Anonymous',
                       email: this.state.email,
@@ -260,6 +261,7 @@ class ProductDetail extends Component {
                       'Content-Type': 'application/json',
                     }),
                   };
+                  console.log('in p det userPost', userPost);
                   const payPromise = () => {
                     // Promiseクラスのインスタンスを関数の戻り値にする
                     // Promiseクラスのコンストラクタの引数には関数を渡す
@@ -294,6 +296,7 @@ class ProductDetail extends Component {
                         console.log('in pd transactionCount', this.transactionCount);
                         const orderPost = {
                           method: 'POST',
+                          mode: 'cors',
                           body: JSON.stringify({
                             uid: data.id,
                             contract_tx: this.transactionCount, // 0no toki kanngaeru

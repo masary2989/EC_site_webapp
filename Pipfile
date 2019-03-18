@@ -12,6 +12,7 @@ djangorestframework = "*"
 pillow = "*"
 mysqlclient = "*"
 web3 = "*"
+django-cors-headers = "*"
 
 [requires]
 python_version = "3.6"

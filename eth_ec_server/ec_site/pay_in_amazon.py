@@ -21,9 +21,11 @@ def l(str):
 
 def pay_amazon_gift(wish, send_to_address):
     # ブラウザの起動
-    with open("amazon_cookies.json", 'r') as cookie_f_r:
+    print('----------start payInAmazon')
+    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "amazon_cookies.json"), 'r') as cookie_f_r:
+        print('open success')
         cookies_r = json.load(cookie_f_r)
-    print(cookies_r[0])
+    print('--------cookies', cookies_r[0])
     try:
         options = webdriver.ChromeOptions()
         # ヘッドレスモードを有効にする（次の行をコメントアウトすると画面が表示される）。
@@ -32,13 +34,12 @@ def pay_amazon_gift(wish, send_to_address):
         # userdata_dir = 'seleniumChromeUserData'  # カレントディレクトリの直下に作る場合
         # os.makedirs(userdata_dir, exist_ok=True)
         # options.add_argument('--user-data-dir=' + userdata_dir)
-        b = webdriver.Chrome(os.path.join(os.path.dirname(__file__), 'chromedriver'), options=options)
+        b = webdriver.Chrome(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'chromedriver'), options=options)
         # b = webdriver.Chrome(os.path.join(os.path.dirname(__file__), 'chromedriver'))
         b.get(ITEM_URL)
     except:
         l('Failed to open browser.')
-        b.quit()
-        exit()
+        return False
     # cookie追加する
     try:
         for c in cookies_r:
@@ -46,7 +47,7 @@ def pay_amazon_gift(wish, send_to_address):
     except:
         l('Failed to add cookie.')
         b.quit()
-        exit()
+        return False
 
     l('kokomadekitayo')
 

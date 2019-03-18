@@ -811,6 +811,7 @@ export const pay = (
     const value = web3.toWei(price, 'ether');
     const conf = {
       method: "post",
+      mode: 'cors',
       body: JSON.stringify({
         amount: price,
         u_address: from,

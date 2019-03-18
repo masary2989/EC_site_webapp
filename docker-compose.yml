@@ -29,7 +29,15 @@ services:
   web:
     build: ./web
     container_name: eth_ec_server.web
-    command: uwsgi --socket :8001 --module eth_ec_server.wsgi
+    command: >
+      bash -c "uwsgi --socket :8001 --module eth_ec_server.wsgi
+      && npm run dev
+      && python manage.py collectstatic
+      && python manage.py migrate
+      && python manage.py loaddata eth_ec_server/ec_site/fixtures/ec_seed.json
+      && python manage.py loaddata eth_ec_server/ec_site/fixtures/ec_seed2.json
+      && python manage.py loaddata eth_ec_server/ec_site/fixtures/ec_seed3.json
+      && python manage.py loaddata eth_ec_server/ec_site/fixtures/ec_seed4.json"
     volumes:
       - ./eth_ec_server:/code
       - ./eth_ec_server/static:/static
