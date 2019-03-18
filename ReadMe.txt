@@ -23,6 +23,8 @@ npm run build
 ・manage.py collectstatic
 
 # デプロイ手順
-１、クローンしてくる
+0、allowdhost追加,CORS_ORIGIN_WHITELIST追加
+1、npm run dev
 2、manage.py collectstatic
-3、docker-compose up -d
+３、クローンしてくる
+4、docker-compose up -d
