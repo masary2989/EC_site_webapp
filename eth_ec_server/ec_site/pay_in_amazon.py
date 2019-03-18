@@ -22,10 +22,15 @@ def l(str):
 def pay_amazon_gift(wish, send_to_address):
     # ブラウザの起動
     print('----------start payInAmazon')
-    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "amazon_cookies.json"), 'r') as cookie_f_r:
-        print('open success')
-        cookies_r = json.load(cookie_f_r)
-    print('--------cookies', cookies_r[0])
+    try:
+        with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "amazon_cookies.json"), 'r') as cookie_f_r:
+            print('open success')
+            cookies_r = json.load(cookie_f_r)
+        print('--------cookies', cookies_r[0])
+    except:
+        l('Failed to open browser.')
+        return False
+
     try:
         options = webdriver.ChromeOptions()
         # ヘッドレスモードを有効にする（次の行をコメントアウトすると画面が表示される）。
