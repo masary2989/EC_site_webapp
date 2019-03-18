@@ -32,7 +32,7 @@ DEBUG = False
 
 if not DEBUG:
     # ALLOWED_HOSTS=['*']
-    ALLOWED_HOSTS=['127.0.0.1', 'localhost']
+    ALLOWED_HOSTS=['127.0.0.1', 'localhost', '52.199.226.124']
 
 
 # Application definition
