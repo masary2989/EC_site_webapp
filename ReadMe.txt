@@ -24,7 +24,10 @@ npm run build
 
 # デプロイ手順
 0、allowdhost追加,CORS_ORIGIN_WHITELIST追加
-1、npm run dev
-2、manage.py collectstatic
-３、クローンしてくる
-4、docker-compose up -d
+1、app.jsのapi_root_urlを書き換える
+2、npm run dev
+3、manage.py collectstatic
+4、git add commit push
+5、サーバーでクローンしてくる
+6、docker-compose up -d
+7、.envファイル、amazon-cookies.jsonとかを入れる
