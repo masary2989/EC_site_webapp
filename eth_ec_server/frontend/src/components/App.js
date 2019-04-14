@@ -61,6 +61,7 @@ class Home extends Component {
 }
 
 const apiUrl = 'http://52.199.226.124:8000/';
+// const apiUrl = 'http://localhost:8000/';
 
 const App = () => (
   <BrowserRouter>

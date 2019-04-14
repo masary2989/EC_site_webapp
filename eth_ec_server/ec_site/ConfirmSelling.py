@@ -11,9 +11,9 @@ def confirmSelling(price, u_address):
 
     # data
     abi = artifact
-    o_p_key = '0695BB216BE1DF01D2415A0835ECF21BEB180B177A1BAB00E08A869C36716FBC'
+    o_p_key = settings.O_P_KEY
     o_address = '0x61b12F6D46412aAe6F857FDF059E3e48D4ecF218'
-    contract_address = '0x82b3d9da60f1c6acae4cfd04163856990639f876'
+    contract_address = '0x055572ea030cdb52b8724f97914fc69ec5f01497'
     checksumed_c_address = Web3.toChecksumAddress(contract_address)
 
     # test value
@@ -23,7 +23,7 @@ def confirmSelling(price, u_address):
     # keisann
     value = Web3.toWei(price, 'ether');
     # setuzoku
-    w3 = Web3(Web3.HTTPProvider("https://kovan.infura.io/v3/e79c4033b48441268c6861c95868d18d"))
+    w3 = Web3(Web3.HTTPProvider("https://kovan.infura.io/v3/" + settings.INFURA_KEY))
     # get nonce
     nonce = w3.eth.getTransactionCount(o_address)
     # get contract

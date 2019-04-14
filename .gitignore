@@ -1,3 +1,4 @@
 node_modules/
 db/
 amazon_cookies.json
+.env

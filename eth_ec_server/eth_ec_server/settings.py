@@ -15,6 +15,8 @@ import os
 import pymysql
 pymysql.install_as_MySQLdb()
 
+from dotenv import load_dotenv
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PROJECT_NAME = os.path.basename(BASE_DIR)
@@ -169,3 +171,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_ROOT = '/var/www/{}/static'.format(PROJECT_NAME)
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+
+dotenv_path = os.path.join(os.path.dirname(__file__), '.env')
+load_dotenv(dotenv_path)
+
+O_P_KEY = os.environ.get("O_P_KEY") # 環境変数の値をO_P_KEYに代入
+INFURA_KEY = os.environ.get("INFURA_KEY") # 環境変数の値をINFURA_KEYに代入
